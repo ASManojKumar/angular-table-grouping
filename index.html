@@ -1,0 +1,48 @@
+<html>
+<head>
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css">
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+   <div ng-app="myApp" flex>
+      <div ng-controller="userTable">
+         <div ng-repeat="table in tables">
+         <div ng-click="active=!active" class="collapsed">
+            <i ng-class="active && 'icon-chevron-right' || !active && 'icon-chevron-down'"></i>
+         </div>
+            <ng-md-icon icon="view_headline" style="fill: black" size="25"></ng-md-icon>
+            <span>{{table.label}}</span>
+            <div ng-repeat="child in table.children" ng-hide="active">
+               <table flex class="mdl-data-table md-whiteframe-z2">
+                  <thead>
+                     <tr>
+                        <th>
+                           {{child.label1}}
+                        </th>
+                        <th>
+                           {{child.label2}}
+                        </th>
+                        <th>
+                           {{child.label3}}
+                        </th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="obj in child.children">
+                        <td>
+                           <ng-md-icon icon="exit_to_app" style="fill: black" size="20"></ng-md-icon> {{obj.label1}}</td>
+                        <td>{{obj.label2}}</td>
+                        <td>{{obj.label3}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
+   <script src="main.js"></script>
+</body>
+</html>
